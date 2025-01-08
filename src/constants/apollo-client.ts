@@ -2,16 +2,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 import { onError } from "@apollo/client/link/error"
 import { API_URL } from "./urls";
 import excludedRoutes from "./excluded-routes";
-import router from "../components/Routes";
-
-export const onLogout = async () => {
-  try {
-    await router.navigate("/login");
-    await client.resetStore();
-  } catch (error) {
-    console.error("Error during logout: ", error);
-  }
-};
+import { onLogout } from "../utils/logout";
 
 const logoutLink = onError((error) => {
   if (
