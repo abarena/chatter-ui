@@ -17,13 +17,15 @@ const darkTheme = createTheme({
 
 const App = () => {
   const { path } = usePath();
+
+  const showChatList = path === '/' || path.includes('/chats');
   
   return <ApolloProvider client={client}>
       <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
       <Header/>
       <Guard>
-        { path === '/' ? (
+        { showChatList ? (
           <Grid2 container>
             <Grid2 size={3}>
               <ChatList/>
@@ -42,7 +44,7 @@ const App = () => {
 }
 
 const Routes = () => {
-  return <Container>
+  return <Container sx={{ height: '100%'}}>
     <RouterProvider router={router}/>
   </Container>
 }
